@@ -39,7 +39,7 @@ export function ImageGenerator() {
   return (
     <div className="flex flex-col gap-4">
       {/* 图片预览区域 */}
-      <div className="aspect-square w-full rounded-lg bg-gray-100 overflow-hidden">
+      <div className="aspect-square w-full rounded-lg bg-gray-100 dark:bg-gray-800 overflow-hidden">
         {generatedImage ? (
           <img 
             src={generatedImage} 
@@ -50,11 +50,11 @@ export function ImageGenerator() {
           <div className="flex items-center justify-center h-full">
             {isGenerating ? (
               <div className="text-center flex flex-col items-center justify-center">
-                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900"></div>
-                <p className="mt-4">Generating your image...</p>
+                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900 dark:border-gray-100"></div>
+                <p className="mt-4 text-gray-900 dark:text-gray-100">Generating your image...</p>
               </div>
             ) : (
-              <span className="text-gray-500">No image generated</span>
+              <span className="text-gray-500 dark:text-gray-400">No image generated</span>
             )}
           </div>
         )}

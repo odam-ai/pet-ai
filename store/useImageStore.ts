@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import { imageApi, type Job, type JobWorkflowData_DemoTextToImage } from '@/utils/api'
+import { imageApi, type Job, type JobWorkflowData_DemoTextToImage, type JobWorkflowData_Labubu } from '@/utils/api'
 
 interface ImageState {
   currentJob: Job | null
@@ -27,11 +27,11 @@ export const useImageStore = create<ImageState>((set, get) => ({
   generateImage: async () => {
     try {
       set({ isGenerating: true, error: null })
-      const jobData: JobWorkflowData_DemoTextToImage = {
+      const jobData: JobWorkflowData_DemoTextToImage | JobWorkflowData_Labubu = {
         input: {
             prompt: get().prompt
         },
-        workflow: 'demo.text_to_image'
+        workflow: 'labubu'
       }
       
       const job = await imageApi.createJob(jobData)

@@ -9,6 +9,12 @@ export interface JobWorkflowData_DemoTextToImage {
     output?: { image: OutputImage }
 }
 
+export interface JobWorkflowData_Labubu {
+    workflow: 'labubu'
+    input: { prompt: string }
+    output?: { image: OutputImage }
+}
+
 const api = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,
   headers: {
@@ -33,7 +39,7 @@ export interface Job {
 }
 
 export const imageApi = {
-  createJob: async (data: JobWorkflowData_DemoTextToImage) => {
+  createJob: async (data: JobWorkflowData_DemoTextToImage | JobWorkflowData_Labubu) => {
     const response = await api.post<Job>('/api/v1/jobs', data)
     return response.data
   },
