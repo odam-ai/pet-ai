@@ -9,6 +9,7 @@ import {
   User
 } from 'firebase/auth';
 import { auth } from '@/utils/firebase';
+import { setAuthToken } from '@/utils/api';
 
 interface AuthContextType {
   user: User | null;
@@ -24,8 +25,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
       setUser(user);
+      if (user) {
+        const token = await user.getIdToken();
+        setAuthToken(token);
+      } else {
+        setAuthToken(''); // Clear token when user signs out
+      }
       setLoading(false);
     });
 
@@ -35,7 +42,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const signInWithGoogle = async () => {
     const provider = new GoogleAuthProvider();
     try {
-      await signInWithPopup(auth, provider);
+      const result = await signInWithPopup(auth, provider);
+      // Get the ID token
+      const token = await result.user.getIdToken();
+      // Set the token for API calls
+      setAuthToken(token);
     } catch (error) {
       console.error('Error signing in with Google:', error);
     }

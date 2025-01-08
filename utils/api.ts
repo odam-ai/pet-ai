@@ -16,6 +16,10 @@ const api = axios.create({
   },
 })
 
+export const setAuthToken = (token: string) => {
+  api.defaults.headers.common['Authorization'] = `Bearer ${token}`
+}
+
 export interface Job {
   id: string
   status: 'created' | 'dispatched' | 'started' | 'succeeded' | 'failed'

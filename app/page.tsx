@@ -18,7 +18,7 @@ export default function Home() {
   if (!user) {
     return (
       <div className="flex flex-col items-center justify-center min-h-screen gap-4">
-        <h1 className="text-2xl font-bold text-center">Welcome to Odam Image Generator</h1>
+        <h1 className="text-2xl font-bold text-center">Welcome to Odam Pet Image Generator</h1>
         <p className="text-gray-600">Please sign in to continue</p>
         <Button onClick={signInWithGoogle}>
           Sign in with Google
@@ -30,7 +30,7 @@ export default function Home() {
   return (
     <main className="container mx-auto px-4 py-8">
       <div className="flex justify-between items-center mb-8">
-        <h1 className="text-2xl font-bold">Odam Generator</h1>
+        <h1 className="text-2xl font-bold">Odam Pet</h1>
         <div className="flex items-center gap-4">
           <span>{user.email}</span>
           <Button variant="outline" onClick={signOut}>
