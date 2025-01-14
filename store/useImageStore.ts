@@ -2,7 +2,7 @@ import { create } from 'zustand'
 import { imageApi, type Job, type JobWorkflowData_DemoTextToImage, type JobWorkflowData_Labubu } from '@/utils/api'
 
 interface ImageState {
-  currentJob: Job | null
+  currentJob: Job<JobWorkflowData_Labubu | JobWorkflowData_DemoTextToImage> | null
   isGenerating: boolean
   prompt: string
   aspectRatio: string
@@ -61,7 +61,7 @@ export const useImageStore = create<ImageState>((set, get) => ({
 
         if (job.status === 'succeeded' || job.status === 'failed') {
           if (job.status === 'failed') {
-            set({ error: job.error || 'Generation failed' })
+            set({ error: job.failed_reason || 'Generation failed' })
           }
           set({ isGenerating: false })
           return

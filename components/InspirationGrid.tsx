@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { useResponsive } from '@/utils/responsive'
+import Image from 'next/image'
 
 interface InspirationItem {
   id: string
@@ -26,12 +27,14 @@ export function InspirationGrid() {
       {inspirations.map((item) => (
         <div 
           key={item.id} 
-          className="aspect-square rounded-lg overflow-hidden cursor-pointer hover:opacity-90 transition-opacity"
+          className="aspect-square rounded-lg overflow-hidden cursor-pointer hover:opacity-90 transition-opacity relative"
         >
-          <img 
+          <Image 
             src={item.imageUrl} 
             alt={item.prompt}
-            className="w-full h-full object-cover"
+            fill
+            className="object-cover"
+            unoptimized
           />
         </div>
       ))}

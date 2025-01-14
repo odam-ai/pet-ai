@@ -1,11 +1,11 @@
 'use client'
 
-import { useEffect } from 'react'
 import { useImageStore } from '@/store/useImageStore'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Alert } from '@/components/ui/alert'
 import { useResponsive } from '@/utils/responsive'
+import Image from 'next/image'
 // import { ToolBar } from '@/components/ToolBar'
 export function ImageGenerator() {
   const { 
@@ -39,12 +39,14 @@ export function ImageGenerator() {
   return (
     <div className="flex flex-col gap-4">
       {/* 图片预览区域 */}
-      <div className="aspect-square w-full rounded-lg bg-gray-100 dark:bg-gray-800 overflow-hidden">
+      <div className="aspect-square w-full rounded-lg bg-gray-100 dark:bg-gray-800 overflow-hidden relative">
         {generatedImage ? (
-          <img 
+          <Image 
             src={generatedImage} 
             alt="Generated image"
-            className="w-full h-full object-cover"
+            fill
+            className="object-cover"
+            unoptimized
           />
         ) : (
           <div className="flex items-center justify-center h-full">
