@@ -14,7 +14,12 @@ export function JobHistory() {
     const fetchJobs = async () => {
       try {
         const response = await imageApi.getJobs()
-        setJobs(response)
+        const sortedJobs = response.sort((a, b) => {
+          const dateA = new Date(a.succeeded_at || a.created_at)
+          const dateB = new Date(b.succeeded_at || b.created_at)
+          return dateB.getTime() - dateA.getTime()
+        })
+        setJobs(sortedJobs)
       } catch (error) {
         console.error('Failed to fetch jobs:', error)
       } finally {

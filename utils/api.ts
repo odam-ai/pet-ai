@@ -17,7 +17,7 @@ export interface JobWorkflowData_Labubu {
 
 export type JobWorkflowData = JobWorkflowData_DemoTextToImage | JobWorkflowData_Labubu
 
-export type JobStatus = 'created' | 'dispatched' | 'started' | 'succeeded' | 'failed'
+export type JobStatus = 'created' | 'dispatched' | 'started' | 'succeeded' | 'failed' | 'rendered'
 
 export type Job<T extends JobWorkflowData> = {
     id: string
@@ -30,6 +30,7 @@ export type Job<T extends JobWorkflowData> = {
     failed_at?: string
     failed_reason?: string
     updated_at: string
+    queue_pos?: number
 
     workflow: T['workflow']
     input: T['input']
