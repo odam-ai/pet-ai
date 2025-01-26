@@ -50,11 +50,14 @@ export function JobHistory() {
 
   return (
     <>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-2 md:grid-cols-2 gap-6">
         {jobs.map((job: Job<JobWorkflowData_Labubu | JobWorkflowData_DemoTextToImage>) => (
           <div key={job.id} className="border rounded-lg overflow-hidden bg-white shadow-sm">
             {job.output?.image && (
-              <div className="relative h-48 cursor-pointer" onClick={() => job.output?.image?.url && setSelectedImage(job.output.image.url)}>
+              <div 
+                className="relative w-full aspect-[3/4] cursor-pointer"
+                onClick={() => job.output?.image?.url && setSelectedImage(job.output.image.url)}
+              >
                 <Image
                   src={job.output.image.url}
                   alt="Generated image"

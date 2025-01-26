@@ -58,13 +58,16 @@ export function ImageGenerator() {
             {isGenerating ? (
               <div className="text-center flex flex-col items-center justify-center">
                 <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900 dark:border-gray-100"></div>
-                <p className="mt-4 text-gray-900 dark:text-gray-100">
-                  {currentJob && currentJob.queue_pos !== null 
-                    ? `Waiting in queue... Position: ${currentJob.queue_pos}`
-                    : (currentJob?.status === 'started' || currentJob?.status === 'rendered') 
-                      ? 'Generating your image...'
-                      : 'Processing...'}
-                </p>
+                <div className="mt-4 space-y-2 text-gray-900 dark:text-gray-100">
+                  <p>
+                    {currentJob && currentJob.queue_pos !== null 
+                      ? `There are: ${currentJob.queue_pos} jobs in front of you`
+                      : 'Your image is being generated now...'}
+                  </p>
+                  <p>
+                    {`Approximate wait time: ${currentJob?.queue_pos ? currentJob.queue_pos * 30 : '20'} seconds`}
+                  </p>
+                </div>
               </div>
             ) : (
               <span className="text-gray-500 dark:text-gray-400">No image generated</span>

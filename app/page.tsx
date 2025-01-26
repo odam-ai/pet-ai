@@ -77,12 +77,12 @@ export default function Home() {
         </style>
 
         {/* Header */}
-        <header className="fixed top-0 left-0 right-0 z-50 bg-white shadow-sm">
+        <header role="banner" aria-label="LabuMaker main header" className="fixed top-0 left-0 right-0 z-50 bg-white shadow-sm">
           <div className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
             <div className="flex items-center gap-4">
               <h1 className="text-2xl md:text-3xl" style={{ fontFamily: 'var(--font-fredoka-one)' }}>
                 <span>Labu</span>
-                <span className="text-blue-400">Lab</span>
+                <span className="text-blue-400">Maker</span>
               </h1>
               <span className="text-sm md:text-base text-gray-500" style={{ fontFamily: 'var(--font-fredoka-one)' }}>
                 Create your own unique Labubu
@@ -95,17 +95,18 @@ export default function Home() {
         </header>
 
         {/* Main Content */}
-        <main className="pt-0">
+        <main role="main" aria-label="LabuMaker content" className="pt-0">
+          <h1 className="sr-only">LabuMaker - Labubu Design Generator</h1>
           {/* Hero Section */}
           <div className="relative h-[calc(100vh-120px)] bg-gray-900 mt-14">
             <div className="max-w-7xl mx-auto h-full relative">
               <Image 
                 src="/assets/astro.png"
-                alt="Astronaut Labubu"
+                alt="An astronaut Labubu design created by LabuMaker - the custom Labubu design generator"
                 fill
-                className="object-contain md:object-cover z-0"
+                className="object-cover"
                 priority
-                unoptimized
+                loading="eager"
               />
               <div className="absolute inset-x-0 bottom-20 px-4 z-10 space-y-4 max-w-xl mx-auto">
                 <div className="bg-white bg-opacity-70 rounded-lg p-3 mx-2">
@@ -117,6 +118,7 @@ export default function Home() {
                   className={`w-full bg-orange-500 hover:bg-orange-600 text-white text-xl py-6 font-semibold ${btnPulse ? 'jello-button' : ''}`}
                   style={{ fontFamily: 'var(--font-fredoka-one)' }}
                   onClick={signInWithGoogle}
+                  aria-label="Start creating your custom Labubu design"
                 >
                   START GENERATING
                 </Button>
@@ -128,7 +130,7 @@ export default function Home() {
           <div className="bg-gray-900 text-center py-12 px-6">
             <div className="max-w-4xl mx-auto">
               <h2 className="text-white text-2xl md:text-3xl mb-2" style={{ fontFamily: 'var(--font-fredoka-one)' }}>
-                Let your imagination wild! Create your own unique Labubu design at LabuLab!
+                Let your imagination wild! Create your own unique Labubu design at LabuMaker!
               </h2>
             </div>
           </div>
@@ -145,20 +147,17 @@ export default function Home() {
                     key={index}
                     className={`w-full flex-shrink-0 ${item.background} p-6 md:p-8`}
                   >
-                    <div className="max-w-2xl mx-auto">
-                      {/* <Image 
+                    <div className="relative aspect-[3/4] w-full max-w-2xl mx-auto">
+                      <Image 
                         src={`/assets/showcase/showcase-${index + 1}.png`}
-                        alt={`Labubu design ${index + 1}`}
+                        alt={`Labubu design created by LabuMaker - the custom Labubu design generator: ${item.description}`}
                         fill
-                        className="rounded-lg mb-3 w-full"
-                        unoptimized
-                      /> */}
-                      <img 
-                        src={`/assets/showcase/showcase-${index + 1}.png`}
-                        alt={`Labubu design ${index + 1}`}
-                        className="rounded-lg mb-3 w-full"
+                        className="object-contain"
+                        loading="lazy"
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                        quality={75}
                       />
-                      <p className="text-sm md:text-base bg-white bg-opacity-75 rounded p-3">
+                      <p className="text-sm md:text-base bg-white bg-opacity-75 rounded p-3 absolute bottom-4 left-4 right-4">
                         {item.description}
                       </p>
                     </div>
@@ -189,7 +188,7 @@ export default function Home() {
         </main>
 
         {/* Footer */}
-        <footer className="bg-gray-900 text-white py-12 px-4 mt-16">
+        <footer role="contentinfo" aria-label="Site footer" className="bg-gray-900 text-white py-12 px-4 mt-16">
           <div className="max-w-6xl mx-auto">
             <div className="flex justify-center space-x-6 mb-6">
               <a href="#" className="hover:text-gray-300">
@@ -210,7 +209,7 @@ export default function Home() {
                 <a href="#" className="hover:text-gray-300">Contact</a>
               </div>
               <p className="text-gray-400 text-sm">
-                © 2025 LabuLab. All rights reserved.
+                © 2025 LabuMaker. All rights reserved.
               </p>
             </div>
           </div>
@@ -222,7 +221,7 @@ export default function Home() {
   return (
     <main className="container mx-auto px-4 py-8 overflow-hidden">
       <div className="flex justify-between items-center mb-8 flex-wrap">
-        <h1 className="text-2xl font-bold">LabuLab</h1>
+        <h1 className="text-2xl font-bold">LabuMaker</h1>
         <div className="flex items-center gap-4 flex-wrap">
           <span className="truncate max-w-xs">{user.email}</span>
           <Button variant="outline" onClick={signOut}>
