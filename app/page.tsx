@@ -219,8 +219,8 @@ export default function Home() {
   }
 
   return (
-    <main className="container mx-auto px-4 py-8 overflow-hidden">
-      <div className="flex justify-between items-center mb-8 flex-wrap">
+    <main className="container mx-auto px-4 py-2 overflow-hidden">
+      <div className="flex justify-between items-center mb-4 flex-wrap">
         <h1 className="text-2xl font-bold">LabuMaker</h1>
         <div className="flex items-center gap-4 flex-wrap">
           <span className="truncate max-w-xs">{user.email}</span>
@@ -231,9 +231,9 @@ export default function Home() {
       </div>
 
       <Tabs defaultValue="generate" className="w-full">
-        <TabsList className="grid w-full grid-cols-2 mb-8">
-          <TabsTrigger value="generate">Generate Image</TabsTrigger>
-          <TabsTrigger value="history">History</TabsTrigger>
+        <TabsList className="grid w-full grid-cols-2 mb-4">
+          <TabsTrigger value="generate">Labubu Generator</TabsTrigger>
+          <TabsTrigger value="history">My Designs</TabsTrigger>
         </TabsList>
         <TabsContent value="generate">
           <ImageGenerator />

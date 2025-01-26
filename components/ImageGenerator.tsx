@@ -114,13 +114,18 @@ export function ImageGenerator() {
 
       {/* 提示词输入和生成按钮 */}
       <div className={`flex ${isMobile ? 'flex-col' : ''} gap-2`}>
-        <Input
-          value={prompt}
-          onChange={(e) => setPrompt(e.target.value)}
-          placeholder="Enter your prompt..."
-          className="flex-1"
-          disabled={isGenerating}
-        />
+        <div className="relative flex-1">
+          <span className="absolute left-3 top-1/2 -translate-y-1/2 text-black">
+            A Labubu: 
+          </span>
+          <Input
+            value={prompt}
+            onChange={(e) => setPrompt(e.target.value)}
+            placeholder="enter description here (e.g. wearing cosmonaut suit)"
+            className="pl-[90px] h-10"
+            disabled={isGenerating}
+          />
+        </div>
         <Button 
           onClick={generateImage}
           disabled={isGenerating || !prompt}
