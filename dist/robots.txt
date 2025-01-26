@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://labubu.odam.ai/sitemap.xml 
